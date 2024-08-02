@@ -1,24 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import {useEffect, useState} from 'react'
+import Header from '../Header'
+
 import './index.css'
 
 const Home = () => {
-  useEffect(() => {
-    const fetchResource = async () => {
-      const url = 'https://run.mocky.io/v3/a67edc87-49c7-4822-9cb4-e2ef94cb3099'
-      const options = {
-        method: 'GET',
-      }
-      try {
-        const response = await fetch(url, options)
-        const data = await response.json()
-        console.log(data)
-      } catch (error) {
-        console.error(`Something went wrong: ${error}`)
-      }
-    }
-
-    fetchResource()
-  }, [])
+  const [resaurantObject, setRestaurantObject] = useState([])
+  const [name, setName] = useState('')
+  const [totalQuantity, setTotalQuanity] = useState(0)
 
   useEffect(() => {
     const fetchResource = async () => {
@@ -30,16 +18,23 @@ const Home = () => {
       try {
         const response = await fetch(url, options)
         const data = await response.json()
-        console.log(data)
+        setRestaurantObject(data[0])
       } catch (error) {
         console.error(`Something went wrong: ${error}`)
       }
     }
-
     fetchResource()
   }, [])
 
-  return <div>{}</div>
+  useEffect(() => {
+    setName(resaurantObject.restaurant_name)
+  }, [resaurantObject])
+
+  return (
+    <>
+      <Header name={name} quantity={totalQuantity} />
+    </>
+  )
 }
 
 export default Home
