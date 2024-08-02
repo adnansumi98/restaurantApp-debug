@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import './index.css'
 
 const Home = () => {
-  // for test case 1: failing
-
   useEffect(() => {
     const fetchResource = async () => {
       const url = 'https://run.mocky.io/v3/a67edc87-49c7-4822-9cb4-e2ef94cb3099'
