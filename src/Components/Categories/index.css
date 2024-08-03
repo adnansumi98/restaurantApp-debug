@@ -1,4 +1,5 @@
 .category-list {
+  margin-top: 80px;
   height: 40px;
   list-style: none;
   display: flex;
@@ -6,17 +7,17 @@
   padding-inline-start: 0px;
   margin-left: 10px;
   margin-right: 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  justify-content: space-evenly;
+  overflow-y: auto;
+  justify-content: flex-start;
   align-items: center;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  width: 100vw !important;
 }
 
 .category {
   margin: 0px;
-  width: 150px;
+  width: 160px;
   border: transparent;
   font-family: 'Roboto';
   font-size: 16px;
@@ -34,6 +35,7 @@
 @media (min-width: 768px) {
   .category-list {
     overflow-x: hidden;
+    justify-content: space-between;
   }
   .category {
     width: auto;
