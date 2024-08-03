@@ -6,9 +6,9 @@
   justify-content: space-between;
   align-items: center;
   font-family: 'Roboto';
-  border-bottom: 3px solid #cfcfcf;
+  border-bottom: 3px solid #ededed;
   margin: 2px;
-  max-height: 80px;
+  max-height: 60px;
 }
 
 .header-title {
@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 .cart-icon {
   color: #585555;
@@ -32,8 +32,14 @@
   color: #fff;
   border-radius: 50%;
   font-size: 12px;
-  padding: 3px;
+  padding: 3px 6px 3px 6px;
   position: relative;
   bottom: 55px;
   left: 20px;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 24px;
+  }
 }

@@ -2,8 +2,7 @@ import {AiOutlineShoppingCart} from 'react-icons/ai'
 import './index.css'
 
 const Header = props => {
-  const {name} = props
-  const quantity = 10
+  const {name, quantity} = props
 
   return (
     <div className="header-container">

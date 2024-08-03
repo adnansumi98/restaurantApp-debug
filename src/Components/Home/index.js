@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import Header from '../Header'
+import Categories from '../Categories'
 
 import './index.css'
 
@@ -7,6 +8,8 @@ const Home = () => {
   const [resaurantObject, setRestaurantObject] = useState([])
   const [name, setName] = useState('')
   const [totalQuantity, setTotalQuanity] = useState(0)
+  const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState([])
 
   useEffect(() => {
     const fetchResource = async () => {
@@ -18,6 +21,7 @@ const Home = () => {
       try {
         const response = await fetch(url, options)
         const data = await response.json()
+        // console.log(data)
         setRestaurantObject(data[0])
       } catch (error) {
         console.error(`Something went wrong: ${error}`)
@@ -27,12 +31,37 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
+    console.log()
     setName(resaurantObject.restaurant_name)
+    // to handle error on initial rendering
+    if (resaurantObject.length !== 0) {
+      // return category with id and name
+      const categoriesObject = resaurantObject.table_menu_list.map(each => ({
+        id: each.menu_category_id,
+        category: each.menu_category,
+      }))
+      setCategories(categoriesObject)
+    }
   }, [resaurantObject])
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setSelectedCategory(categories[0])
+    }
+  }, [categories])
 
   return (
     <>
-      <Header name={name} quantity={totalQuantity} />
+      <Header
+        name={name}
+        quantity={totalQuantity}
+        setQuanity={setTotalQuanity}
+      />
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
     </>
   )
 }
