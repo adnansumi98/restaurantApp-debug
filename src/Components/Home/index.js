@@ -33,7 +33,7 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    console.log()
+    // console.log(resaurantObject)
     setName(resaurantObject.restaurant_name)
     // to handle error on initial rendering
     if (resaurantObject.length !== 0) {
@@ -52,15 +52,13 @@ const Home = () => {
     }
   }, [categories])
 
+  const filterFoodItems = filterbyCategory => {
+    const foodItemsList = resaurantObject.table_menu_list
+      .filter(category => category.menu_category === filterbyCategory.category)
+      .map(menu => menu.category_dishes)
+    return foodItemsList
+  }
   useEffect(() => {
-    const filterFoodItems = filterbyCategory => {
-      const foodItemsList = resaurantObject.table_menu_list
-        .filter(
-          category => category.menu_category === filterbyCategory.category,
-        )
-        .map(menu => menu.category_dishes)
-      return foodItemsList
-    }
     if (selectedCategory.length !== 0) {
       const foodItemsList = filterFoodItems(selectedCategory)
       setFoodItems(foodItemsList[0])
@@ -68,7 +66,7 @@ const Home = () => {
   }, [selectedCategory])
 
   return (
-    <>
+    <div className="home-container">
       <Header
         name={name}
         quantity={totalQuantity}
@@ -79,8 +77,12 @@ const Home = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <FoodItems foodItemsList={foodItems} />
-    </>
+      <FoodItems
+        foodItemsList={foodItems}
+        totalQuantity={totalQuantity}
+        setTotalQuantity={setTotalQuanity}
+      />
+    </div>
   )
 }
 

@@ -6,28 +6,27 @@
 .dish-category-container {
   width: 30px !important;
   height: 30px !important;
-  border: 2px solid green;
   padding: 3px;
+  background-color: #f7f7f7;
 }
 
 .dish-category-item {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   margin: 0px;
-  background-color: green;
 }
 .type-1-container {
-  border: 2px solid red;
+  border: 1px solid #92282a;
 }
 .type-2-container {
-  border: 2px solid green;
+  border: 1px solid #00923f;
 }
 .type-1-item {
-  background-color: red;
+  background-color: #92282a;
 }
 .type-2-item {
-  background-color: green;
+  background-color: #00923f;
 }
 .dish-details {
   display: flex;
@@ -69,8 +68,54 @@
 .dish-image {
   width: 20vw;
   height: 25vh;
-  border-radius: 25px;
+  border-radius: 15px;
   padding: 10px;
   margin: 0px;
   margin-left: 10px;
+}
+.dish-quantity-contianer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #338218;
+  padding: 10px;
+  max-width: 100px;
+  max-height: 35px;
+  border-radius: 25px;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+.dish-quantity-button {
+  background: transparent;
+  border: transparent;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+.dish-addons {
+  border: transparent;
+  background: transparent;
+  width: 50%;
+  margin: 0px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-family: 'Roboto';
+  font-size: 16px;
+  color: #653ef3;
+}
+.dish-not-available {
+  font-size: 16px;
+  color: #e8534d;
+}
+
+@media (min-width: 768px) {
+  .dish-image {
+    width: 200px;
+    height: 200px;
+  }
+  .dish-details {
+    min-width: 70vw;
+    max-width: 70vw;
+  }
 }

@@ -1,10 +1,9 @@
-import {useState} from 'react'
+import Quantity from './Quantity'
 import './index.css'
 
 const FoodItems = props => {
-  const {foodItemsList} = props
-  console.log(foodItemsList[0])
-  const [quantity, setQuantity] = useState(0)
+  const {foodItemsList, setTotalQuantity} = props
+  // console.log(foodItemsList[0])
 
   return (
     <ul>
@@ -19,17 +18,18 @@ const FoodItems = props => {
             <p className="dish-name">{dish.dish_name}</p>
             <p className="dish-price">{`SAR ${dish.dish_price}`}</p>
             <p className="dish-description">{dish.dish_description}</p>
-            <div className="dish-quantity-contianer">
-              <button className="dish-quantity-button" type="button">
-                -
+            {dish.dish_Availability ? (
+              <Quantity setTotalQuantity={setTotalQuantity} />
+            ) : (
+              <p className="dish-not-available">Not available</p>
+            )}
+            {dish.addonCat.length > 0 ? (
+              <button className="dish-addons" type="button">
+                Customizations available
               </button>
-              <button className="dish-quantity-button" type="button">
-                {quantity}
-              </button>
-              <button className="dish-quantity-button" type="button">
-                +
-              </button>
-            </div>
+            ) : (
+              ''
+            )}
           </div>
           <p className="dish-calories">{`${dish.dish_calories} calories `}</p>
           <img
