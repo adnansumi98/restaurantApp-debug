@@ -1,0 +1,76 @@
+.fooditems-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.dish-category-container {
+  width: 30px !important;
+  height: 30px !important;
+  border: 2px solid green;
+  padding: 3px;
+}
+
+.dish-category-item {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0px;
+  background-color: green;
+}
+.type-1-container {
+  border: 2px solid red;
+}
+.type-2-container {
+  border: 2px solid green;
+}
+.type-1-item {
+  background-color: red;
+}
+.type-2-item {
+  background-color: green;
+}
+.dish-details {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto';
+  margin: 0px;
+  margin-left: 10px;
+  min-width: 50vw;
+  max-width: 50vw;
+}
+.dish-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+.dish-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4f4f4f;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+.dish-description {
+  font-size: 16px;
+  color: #a7a5a5;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+.dish-calories {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffa500;
+  align-self: center;
+  min-width: 10vw;
+  margin: 0px;
+  margin-left: 10px;
+}
+.dish-image {
+  width: 20vw;
+  height: 25vh;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 0px;
+  margin-left: 10px;
+}

@@ -36,6 +36,6 @@
     overflow-x: hidden;
   }
   .category {
-    width: 20vw;
+    width: auto;
   }
 }

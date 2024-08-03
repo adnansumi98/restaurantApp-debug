@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import Header from '../Header'
 import Categories from '../Categories'
+import FoodItems from '../FoodItems'
 
 import './index.css'
 
@@ -10,6 +11,7 @@ const Home = () => {
   const [totalQuantity, setTotalQuanity] = useState(0)
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState([])
+  const [foodItems, setFoodItems] = useState([])
 
   useEffect(() => {
     const fetchResource = async () => {
@@ -50,6 +52,21 @@ const Home = () => {
     }
   }, [categories])
 
+  useEffect(() => {
+    const filterFoodItems = filterbyCategory => {
+      const foodItemsList = resaurantObject.table_menu_list
+        .filter(
+          category => category.menu_category === filterbyCategory.category,
+        )
+        .map(menu => menu.category_dishes)
+      return foodItemsList
+    }
+    if (selectedCategory.length !== 0) {
+      const foodItemsList = filterFoodItems(selectedCategory)
+      setFoodItems(foodItemsList[0])
+    }
+  }, [selectedCategory])
+
   return (
     <>
       <Header
@@ -62,6 +79,7 @@ const Home = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+      <FoodItems foodItemsList={foodItems} />
     </>
   )
 }
