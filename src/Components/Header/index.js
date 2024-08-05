@@ -8,8 +8,11 @@ const Header = props => {
     <div className="header-container">
       <h1 className="header-title">{name}</h1>
       <div className="header-cart-contaier">
+        <p className="header-my-orders">My Orders</p>
         <AiOutlineShoppingCart size={40} className="cart-icon" />
-        <p className="cart-quantity">{quantity}</p>
+        <p className="cart-quantity" data-testid="cart">
+          {quantity > 0 ? quantity : 0}
+        </p>
       </div>
     </div>
   )
