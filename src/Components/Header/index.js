@@ -11,7 +11,7 @@ const Header = props => {
         <p className="header-my-orders">My Orders</p>
         <AiOutlineShoppingCart size={40} className="cart-icon" />
         <p className="cart-quantity" data-testid="cart" value="cart count">
-          {quantity > 0 ? quantity : '0'}
+          {quantity > 0 ? quantity : 0}
         </p>
       </div>
     </div>

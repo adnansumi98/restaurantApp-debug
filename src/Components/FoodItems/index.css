@@ -1,4 +1,6 @@
 .fooditems-container {
+  margin-top: 10px;
+  margin-left: 10px;
   display: flex;
   flex-direction: row;
 }
