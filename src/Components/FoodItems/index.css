@@ -111,10 +111,11 @@
 
 @media (min-width: 768px) {
   .dish-image {
-    width: 200px;
+    width: 20vw;
+    height: 30vh;
   }
   .dish-details {
-    min-width: 70vw;
-    max-width: 70vw;
+    min-width: 60vw;
+    max-width: 60vw;
   }
 }
