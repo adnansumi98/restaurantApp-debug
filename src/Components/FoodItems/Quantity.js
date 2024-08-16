@@ -52,9 +52,15 @@ const Quantity = ({setTotalQuantity}) => {
       >
         -
       </button>
-      <p className="dish-quantity-button" value="dish quantity">
-        {quantity}
-      </p>
+      {quantity > 0 ? (
+        <p className="dish-quantity-button" value={quantity}>
+          {quantity}
+        </p>
+      ) : (
+        <p className="dish-quantity-button" value={quantity}>
+          0
+        </p>
+      )}
       <button
         className="dish-quantity-button"
         type="button"
