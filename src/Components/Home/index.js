@@ -63,6 +63,7 @@ const Home = () => {
       const foodItemsList = filterFoodItems(selectedCategory)
       setFoodItems(foodItemsList[0])
     }
+    // eslint-disable-next-line
   }, [selectedCategory])
 
   return (
