@@ -13,6 +13,7 @@
   position: fixed;
   top: 0px;
   width: 100%;
+  padding-bottom: 5px;
 }
 
 .header-title {
@@ -26,6 +27,14 @@
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+}
+
+.cart-link-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 .cart-icon {
   color: #585555;
@@ -50,11 +59,30 @@
   padding: 10px;
 }
 
+.logout-button{
+  border:transparent;
+  background-color: #ff6347;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.logout-icon{
+  display: none;
+}
+
 @media (max-width: 768px) {
   .header-title {
-    font-size: 24px;
+    font-size: 32px;
   }
   .header-my-orders {
+    display: none;
+  }
+  .logout-icon{
+    display: block !important;
+  }
+  .logout-button{
     display: none;
   }
 }
