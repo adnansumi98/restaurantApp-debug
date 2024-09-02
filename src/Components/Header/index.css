@@ -66,6 +66,7 @@
   font-size: 14px;
   padding: 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .logout-icon {
@@ -81,6 +82,7 @@
   }
   .logout-icon {
     display: block !important;
+    cursor: pointer;
   }
   .logout-button {
     display: none;
