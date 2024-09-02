@@ -1,4 +1,4 @@
-import Quantity from './Quantity'
+import Quantity from '../Quantity'
 import './index.css'
 
 const FoodItems = props => {

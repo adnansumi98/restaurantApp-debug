@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import Header from '../Header'
 import Categories from '../Categories'
 import FoodItems from '../FoodItems'
-
+import {restaurantAppAPIUrl} from '../../Utility/Constants'
 import './index.css'
 
 const Home = () => {
@@ -15,8 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchResource = async () => {
-      const url =
-        'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details'
+      const url = restaurantAppAPIUrl
       const options = {
         method: 'GET',
       }

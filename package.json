@@ -11,6 +11,7 @@
     "@testing-library/react": "11.2.5",
     "@testing-library/user-event": "12.6.2",
     "chalk": "4.1.0",
+    "js-cookie": "3.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "4.2.0",
@@ -29,8 +30,8 @@
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "start-ccbp": "react-scripts start",
+    "start": "react-scripts start",
+    "start-local": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "lint": "eslint .",
