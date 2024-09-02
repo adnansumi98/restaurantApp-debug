@@ -9,13 +9,13 @@ export const CartProvider = ({children}) => {
     console.log('cart updated', cartList)
   }, [cartList])
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    setCartList(
-      cartList.map(item =>
-        item.id === itemId ? {...item, quantity: newQuantity} : item,
-      ),
-    )
-  }
+  // const handleQuantityChange = (itemId, newQuantity) => {
+  //   setCartList(
+  //     cartList.map(item =>
+  //       item.id === itemId ? {...item, quantity: newQuantity} : item,
+  //     ),
+  //   )
+  // }
 
   const addCartItem = cartObject => {
     const newItem = cartObject
@@ -38,19 +38,26 @@ export const CartProvider = ({children}) => {
     setCartList([])
   }
 
-  const incrementCartItemQuantity = () => {
-    console.log('pass')
+  const incrementCartItemQuantity = itemId => {
+    setCartList(
+      cartList.map(item =>
+        item.id === itemId ? {...item, quantity: item.quantity + 1} : item,
+      ),
+    )
   }
 
-  const decrementCartItemQuantity = () => {
-    console.log('pass')
+  const decrementCartItemQuantity = itemId => {
+    setCartList(
+      cartList.map(item =>
+        item.id === itemId ? {...item, quantity: item.quantity - 1} : item,
+      ),
+    )
   }
 
   return (
     <CartContext.Provider
       value={{
         cartList,
-        handleQuantityChange,
         addCartItem,
         incrementCartItemQuantity,
         decrementCartItemQuantity,

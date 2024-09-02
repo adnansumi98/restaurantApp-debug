@@ -1,17 +1,21 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
+import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import Categories from '../Categories'
 import FoodItems from '../FoodItems'
 import {restaurantAppAPIUrl} from '../../Utility/Constants'
+import {NameContext} from '../../Utility/NameContext'
 import './index.css'
 
 const Home = () => {
   const [resaurantObject, setRestaurantObject] = useState([])
-  const [name, setName] = useState('')
   const [totalQuantity, setTotalQuanity] = useState(0)
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState([])
   const [foodItems, setFoodItems] = useState([])
+  const [isloading, setIsLoading] = useState(true)
+
+  const {setRestaurantName} = useContext(NameContext)
 
   useEffect(() => {
     const fetchResource = async () => {
@@ -33,7 +37,7 @@ const Home = () => {
 
   useEffect(() => {
     // console.log(resaurantObject)
-    setName(resaurantObject.restaurant_name)
+    setRestaurantName(resaurantObject.restaurant_name)
     // to handle error on initial rendering
     if (resaurantObject.length !== 0) {
       // return category with id and name
@@ -43,7 +47,8 @@ const Home = () => {
       }))
       setCategories(categoriesObject)
     }
-  }, [resaurantObject])
+    setIsLoading(false)
+  }, [resaurantObject, setRestaurantName])
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -66,23 +71,25 @@ const Home = () => {
   }, [selectedCategory])
 
   return (
-    <div className="home-container">
-      <Header
-        name={name}
-        quantity={totalQuantity}
-        setQuanity={setTotalQuanity}
-      />
-      <Categories
-        categories={categories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <FoodItems
-        foodItemsList={foodItems}
-        totalQuantity={totalQuantity}
-        setTotalQuantity={setTotalQuanity}
-      />
-    </div>
+    <>
+      {isloading ? (
+        <Loader type="Puff" color="#00BFFF" height={100} width={100} />
+      ) : (
+        <div className="home-container">
+          <Header />
+          <Categories
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+          <FoodItems
+            foodItemsList={foodItems}
+            totalQuantity={totalQuantity}
+            setTotalQuantity={setTotalQuanity}
+          />
+        </div>
+      )}
+    </>
   )
 }
 
