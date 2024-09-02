@@ -1,73 +1,61 @@
-import {useState} from 'react'
+import {useState, useCallback} from 'react'
+import './index.css'
 
-const Quantity = ({setTotalQuantity}) => {
+const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
   const [quantity, setQuantity] = useState(0)
 
-  const handleDecreaseQuantity = () => {
-    const decreaseQuantity = dec => {
-      if (dec > 0) {
-        return dec - 1
-      }
-      return 0
-    }
-    setQuantity(prevQuantity => decreaseQuantity(prevQuantity))
+  const handleDecreaseQuantity = useCallback(() => {
+    setQuantity(prev => Math.max(0, prev - 1))
+    setTotalQuantity(prev => Math.max(0, prev - 1))
+  }, [setTotalQuantity])
 
-    const decreaseTotalQuantity = decTotal => {
-      if (quantity > 0) {
-        return decTotal - 1
-      }
-      return decTotal
-    }
-    setTotalQuantity(prevTotalQuantity =>
-      decreaseTotalQuantity(prevTotalQuantity),
-    )
-  }
+  const handleIncreaseQuantity = useCallback(() => {
+    setQuantity(prev => Math.min(20, prev + 1))
+    setTotalQuantity(prev => Math.min(20, prev + 1))
+  }, [setTotalQuantity])
 
-  const handleIncreaseQuantity = () => {
-    const increaseQuantity = inc => {
-      if (inc < 20) {
-        return inc + 1
-      }
-      return inc
-    }
-    setQuantity(prevQuantity => increaseQuantity(prevQuantity))
-
-    const increaseTotalQuantity = incTotal => {
-      if (quantity < 20) {
-        return incTotal + 1
-      }
-      return incTotal
-    }
-    setTotalQuantity(prevTotalQuantity =>
-      increaseTotalQuantity(prevTotalQuantity),
-    )
-  }
+  const handleAddToCartClick = useCallback(() => {
+    handleAddToCart(item, quantity)
+    setQuantity(0) // Reset quantity after adding to cart
+  }, [item, quantity, handleAddToCart])
 
   return (
-    <div className="dish-quantity-contianer">
-      <button
-        className="dish-quantity-button"
-        type="button"
-        onClick={handleDecreaseQuantity}
-      >
-        -
-      </button>
-      {quantity > 0 ? (
-        <p className="dish-quantity-button" value={quantity}>
-          {quantity}
-        </p>
-      ) : (
-        <p className="dish-quantity-button" value={quantity}>
-          0
-        </p>
+    <div className="quantity-container">
+      <div className="dish-quantity-contianer">
+        <button
+          className="dish-quantity-button"
+          type="button"
+          onClick={handleDecreaseQuantity}
+        >
+          -
+        </button>
+        {quantity > 0 ? (
+          <p className="dish-quantity-button" value={quantity}>
+            {quantity}
+          </p>
+        ) : (
+          <p className="dish-quantity-button" value={quantity}>
+            0
+          </p>
+        )}
+        <button
+          className="dish-quantity-button"
+          type="button"
+          onClick={handleIncreaseQuantity}
+        >
+          +
+        </button>
+      </div>
+      {quantity > 0 && (
+        <button
+          type="button"
+          className="add-to-cart-button"
+          onClick={handleAddToCartClick}
+          aria-label={`Add ${item.dish_name} to cart`}
+        >
+          Add to cart
+        </button>
       )}
-      <button
-        className="dish-quantity-button"
-        type="button"
-        onClick={handleIncreaseQuantity}
-      >
-        +
-      </button>
     </div>
   )
 }

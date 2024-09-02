@@ -1,9 +1,30 @@
+import {useCallback, useContext} from 'react'
 import Quantity from '../Quantity'
+import {CartContext} from '../../Utility/CartContext'
 import './index.css'
 
 const FoodItems = props => {
   const {foodItemsList, setTotalQuantity} = props
   // console.log(foodItemsList[0])
+  const {addCartItem} = useContext(CartContext)
+
+  const handleAddToCart = useCallback(
+    (item, quantity) => {
+      if (item && quantity > 0) {
+        const cartItem = {
+          id: item.dish_id,
+          name: item.dish_name,
+          price: item.dish_price,
+          quantity,
+          total: item.dish_price * quantity,
+        }
+
+        addCartItem(cartItem)
+        setTotalQuantity(prev => prev + quantity)
+      }
+    },
+    [addCartItem, setTotalQuantity],
+  )
 
   return (
     <ul>
@@ -19,7 +40,11 @@ const FoodItems = props => {
             <p className="dish-price">{`SAR ${dish.dish_price}`}</p>
             <p className="dish-description">{dish.dish_description}</p>
             {dish.dish_Availability ? (
-              <Quantity setTotalQuantity={setTotalQuantity} />
+              <Quantity
+                item={dish}
+                setTotalQuantity={setTotalQuantity}
+                handleAddToCart={handleAddToCart}
+              />
             ) : (
               <p className="dish-not-available">Not available</p>
             )}

@@ -1,0 +1,41 @@
+.quantity-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 5px;
+  max-height: 40px;
+}
+
+.dish-quantity-contianer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #338218;
+  padding: 10px;
+  max-width: 150px;
+  min-width: 150px;
+  max-height: 35px;
+  border-radius: 25px;
+  margin: 0px;
+}
+.dish-quantity-button {
+  background: transparent;
+  border: transparent;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.add-to-cart-button {
+  border: transparent;
+  margin: 10px;
+  background-color: #338218;
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 14px;
+}
