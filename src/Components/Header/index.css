@@ -29,7 +29,7 @@
   margin-top: 10px;
 }
 
-.cart-link-container{
+.cart-link-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -59,8 +59,8 @@
   padding: 10px;
 }
 
-.logout-button{
-  border:transparent;
+.logout-button {
+  border: transparent;
   background-color: #ff6347;
   color: #ffffff;
   font-size: 14px;
@@ -68,7 +68,7 @@
   border-radius: 10px;
 }
 
-.logout-icon{
+.logout-icon {
   display: none;
 }
 
@@ -79,10 +79,10 @@
   .header-my-orders {
     display: none;
   }
-  .logout-icon{
+  .logout-icon {
     display: block !important;
   }
-  .logout-button{
+  .logout-button {
     display: none;
   }
 }

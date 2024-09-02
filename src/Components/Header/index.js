@@ -1,24 +1,28 @@
 import {AiOutlineShoppingCart, AiOutlineLogout} from 'react-icons/ai'
+import {useContext} from 'react/cjs/react.production.min'
 import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import {CartContext} from '../../Utility/CartContext'
+import {NameContext} from '../../Utility/NameContext'
 import './index.css'
 
-const onClickLogOut = () => {
-  Cookies.remove('jwt_token')
-}
+const Header = () => {
+  const {restaurantName} = useContext(NameContext)
+  const {cartList} = useContext(CartContext)
 
-const Header = props => {
-  const {name, quantity} = props
+  const onClickLogOut = () => {
+    Cookies.remove('jwt_token')
+  }
 
   return (
     <div className="header-container">
-      <h1 className="header-title">{name}</h1>
+      <h1 className="header-title">{restaurantName}</h1>
       <div className="header-cart-contaier">
         <p className="header-my-orders">My Orders</p>
         <Link to="/cart" className="cart-link-container">
           <AiOutlineShoppingCart size={40} className="cart-icon" />
           <p className="cart-quantity" data-testid="cart" value="cart count">
-            {quantity > 0 ? quantity : 0}
+            {cartList.length}
           </p>
         </Link>
         <AiOutlineLogout
