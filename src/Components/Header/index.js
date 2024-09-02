@@ -1,5 +1,8 @@
 import {AiOutlineShoppingCart} from 'react-icons/ai'
+import Cookies from 'js-cookie'
 import './index.css'
+
+const onClickLogOut = () => {}
 
 const Header = props => {
   const {name, quantity} = props
@@ -14,6 +17,9 @@ const Header = props => {
           {quantity > 0 ? quantity : 0}
         </p>
       </div>
+      <button className="logout-button" type="button" onClick={onClickLogOut}>
+        Log Out
+      </button>
     </div>
   )
 }

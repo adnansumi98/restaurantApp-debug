@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {MdVisibility, MdVisibilityOff} from 'react-icons/md'
 import {logInAPIUrl} from '../../Utility/Constants'
@@ -8,6 +9,7 @@ import './index.css'
 const Login = () => {
   const size = '20'
   const color = '#b3b3b3'
+  const history = useHistory()
 
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
@@ -26,6 +28,9 @@ const Login = () => {
         Cookies.set('jwt_token', data.jwt_token)
         setUserName('')
         setPassword('')
+        history.push('/')
+      } else if (userName === '' || password === '') {
+        setErrorMessage('Enter a valid username or password')
       } else {
         setErrorMessage('Authentication Failure')
       }
@@ -47,6 +52,7 @@ const Login = () => {
             value={userName}
             onChange={event => {
               setUserName(event.target.value)
+              setErrorMessage('')
             }}
           />
         </div>
@@ -58,6 +64,7 @@ const Login = () => {
             value={password}
             onChange={event => {
               setPassword(event.target.value)
+              setErrorMessage('')
             }}
           />
         </div>
@@ -81,10 +88,8 @@ const Login = () => {
           <button className="login-button" type="submit">
             Login
           </button>
-          {errorMessage && (
-            <p className="login-error-message">{errorMessage}</p>
-          )}
         </div>
+        {errorMessage && <p className="login-error-message">{errorMessage}</p>}
       </form>
     </div>
   )
