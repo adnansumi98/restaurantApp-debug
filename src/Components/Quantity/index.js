@@ -1,5 +1,6 @@
 import {useState, useCallback} from 'react'
 import './index.css'
+import {MdAddShoppingCart} from 'react-icons/md'
 
 const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
   const [quantity, setQuantity] = useState(0)
@@ -47,14 +48,24 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
         </button>
       </div>
       {quantity > 0 && (
-        <button
-          type="button"
-          className="add-to-cart-button"
-          onClick={handleAddToCartClick}
-          aria-label={`Add ${item.dish_name} to cart`}
-        >
-          Add to cart
-        </button>
+        <>
+          <button
+            type="button"
+            className="add-to-cart-button desktop"
+            onClick={handleAddToCartClick}
+            aria-label={`Add ${item.dish_name} to cart`}
+          >
+            Add to cart
+          </button>
+          <button
+            type="button"
+            className="add-to-cart-button mobile"
+            onClick={handleAddToCartClick}
+            aria-label={`Add ${item.dish_name} to cart`}
+          >
+            <MdAddShoppingCart size={30} />
+          </button>
+        </>
       )}
     </div>
   )

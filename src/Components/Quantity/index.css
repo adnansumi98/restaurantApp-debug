@@ -6,6 +6,7 @@
   padding: 0px;
   margin-bottom: 5px;
   max-height: 40px;
+  min-height: 40px;
 }
 
 .dish-quantity-contianer {
@@ -18,17 +19,20 @@
   max-width: 150px;
   min-width: 150px;
   max-height: 35px;
+  min-height: 35px;
   border-radius: 25px;
   margin: 0px;
 }
+
 .dish-quantity-button {
   background: transparent;
   border: transparent;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   cursor: pointer;
 }
-.add-to-cart-button {
+
+.add-to-cart-button.desktop {
   border: transparent;
   margin: 10px;
   background-color: #338218;
@@ -38,4 +42,27 @@
   padding-left: 15px;
   padding-right: 15px;
   font-size: 14px;
+}
+
+.add-to-cart-button.mobile {
+  display: none;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.add-to-cart-button.mobile svg {
+  width: 30px;
+  height: 30px;
+  color: #338218;
+}
+
+@media (max-width: 768px) {
+  .add-to-cart-button.desktop {
+    display: none;
+  }
+  .add-to-cart-button.mobile {
+    display: inline !important;
+  }
 }
