@@ -1,0 +1,22 @@
+.empty-cart-container {
+  height: 90vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto';
+}
+.empty-cart-heading {
+  font-size: 24px;
+}
+.empty-cart-text {
+  font-size: 16px;
+}
+.empty-cart-button {
+  border: transparent;
+  color: #fff;
+  background-color: #338218;
+  font-size: 14px;
+  padding: 10px;
+}
