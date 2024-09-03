@@ -10,8 +10,11 @@ const Header = () => {
   const {restaurantName} = useContext(NameContext)
   const {cartList} = useContext(CartContext)
 
+  const history = useHistory()
+
   const onClickLogOut = () => {
     Cookies.remove('jwt_token')
+    history.push('/')
   }
 
   return (
