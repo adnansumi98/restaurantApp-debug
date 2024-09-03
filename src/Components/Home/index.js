@@ -72,10 +72,21 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header />
       {isloading ? (
         <Loader
-          type="Oval"
+          type="ThreeDots"
+          height="40"
+          width="40"
+          color="#4fa94d"
+          ariaLabel="oval-loading"
+          style={{paddingLeft: '20px'}}
+        />
+      ) : (
+        <Header />
+      )}
+      {isloading ? (
+        <Loader
+          type="ThreeDots"
           height="80"
           width="80"
           color="#4fa94d"

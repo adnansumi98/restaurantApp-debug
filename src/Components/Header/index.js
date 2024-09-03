@@ -1,5 +1,5 @@
 import {useContext} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {AiOutlineShoppingCart, AiOutlineLogout} from 'react-icons/ai'
 import Cookies from 'js-cookie'
 import {CartContext} from '../../Utility/CartContext'
