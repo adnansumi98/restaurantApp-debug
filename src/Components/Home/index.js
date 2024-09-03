@@ -71,12 +71,19 @@ const Home = () => {
   }, [selectedCategory])
 
   return (
-    <>
+    <div className="home-container">
+      <Header />
       {isloading ? (
-        <Loader type="Puff" color="#00BFFF" height={100} width={100} />
+        <Loader
+          type="Oval"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="oval-loading"
+          className="home-spinner"
+        />
       ) : (
-        <div className="home-container">
-          <Header />
+        <>
           <Categories
             categories={categories}
             selectedCategory={selectedCategory}
@@ -87,9 +94,9 @@ const Home = () => {
             totalQuantity={totalQuantity}
             setTotalQuantity={setTotalQuanity}
           />
-        </div>
+        </>
       )}
-    </>
+    </div>
   )
 }
 

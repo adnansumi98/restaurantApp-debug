@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <Link to="/">
+      <Link to="/" style={{textDecoration: 'none'}}>
         <h1 className="header-title">{restaurantName}</h1>{' '}
       </Link>
       <div className="header-cart-contaier">

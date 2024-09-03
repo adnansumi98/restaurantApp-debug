@@ -13,6 +13,7 @@ const FoodItems = props => {
       if (item && quantity > 0) {
         const cartItem = {
           id: item.dish_id,
+          imageUrl: item.dish_image,
           name: item.dish_name,
           price: item.dish_price,
           quantity,

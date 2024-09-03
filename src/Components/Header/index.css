@@ -19,6 +19,7 @@
 .header-title {
   color: #0f0f0f;
   font-size: 32px;
+  text-decoration: none;
 }
 
 .header-cart-contaier {
@@ -75,7 +76,7 @@
 
 @media (max-width: 768px) {
   .header-title {
-    font-size: 32px;
+    font-size: 28px;
   }
   .header-my-orders {
     display: none;
