@@ -16,7 +16,9 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <h1 className="header-title">{restaurantName}</h1>
+      <Link to="/">
+        <h1 className="header-title">{restaurantName}</h1>{' '}
+      </Link>
       <div className="header-cart-contaier">
         <p className="header-my-orders">My Orders</p>
         <Link to="/cart" className="cart-link-container">

@@ -56,6 +56,8 @@
   width: 30px;
   height: 30px;
   color: #338218;
+  border: solid 5px #838383;
+  border-radius: 25%;
 }
 
 @media (max-width: 768px) {
