@@ -4,17 +4,17 @@ const CartList = props => {
   const {cartList} = props
 
   return (
-    <ul className="cart-list-containe">
+    <ul className="cart-list-container">
       {cartList.map(cartObject => {
-        const {imageUrl, dishName, quantity, price, totalPrice} = cartObject
+        const {imageUrl, name, quantity, price, totalPrice} = cartObject
         return (
-          <li>
+          <li className="dish-item-list">
             <CartItemDetails
               imageUrl={imageUrl}
-              dishName={dishName}
+              dishName={name}
               quantity={quantity}
               price={price}
-              totalPrice={totalPrice}
+              totalPrice={price * quantity}
             />
           </li>
         )

@@ -9,10 +9,10 @@ const Cart = () => {
   const {cartList} = useContext(CartContext)
 
   return (
-    <>
+    <div className="cart-container">
       <Header />
       {cartList.length === 0 ? <EmptyCart /> : <CartList cartList={cartList} />}
-    </>
+    </div>
   )
 }
 export default Cart

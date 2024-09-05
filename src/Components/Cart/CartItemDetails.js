@@ -1,18 +1,20 @@
-import Quantity from '../Quantity'
+import Quantity from './Quantity'
 
 const CartItemDetails = props => {
   const {imageUrl, dishName, quantity, price, totalPrice} = props
 
   return (
-    <div>
+    <div className="cart-item-container">
       <img className="cart-item-image" src={imageUrl} alt={dishName} />
       <div className="cart-item-dish-container">
-        <h1 className="cart-item-heading">{dishName}</h1>
+        <p className="cart-item-heading">{dishName}</p>
         <Quantity />
       </div>
-      <h1 className="cart-item-measure">{quantity}</h1>
-      <h1 className="cart-item-measure">{price}</h1>
-      <h1 className="cart-item-measure">{totalPrice}</h1>
+      <p className="cart-item-measure">{quantity}</p>
+      <p className="cart-item-measure">{`SAR ${Number(price).toFixed(2)}`}</p>
+      <p className="cart-item-measure">{`SAR ${Number(totalPrice).toFixed(
+        2,
+      )}`}</p>
     </div>
   )
 }
