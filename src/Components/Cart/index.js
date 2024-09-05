@@ -2,6 +2,7 @@ import {useContext} from 'react'
 import {CartContext} from '../../Utility/CartContext'
 import Header from '../Header'
 import CartList from './CartList'
+import EmptyCart from './EmptyCart'
 import './index.css'
 
 const Cart = () => {
@@ -10,7 +11,7 @@ const Cart = () => {
   return (
     <>
       <Header />
-      <CartList cartList={cartList} />
+      {cartList.length === 0 ? <EmptyCart /> : <CartList cartList={cartList} />}
     </>
   )
 }
