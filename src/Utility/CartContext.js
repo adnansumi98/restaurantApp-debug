@@ -38,6 +38,8 @@ export const CartProvider = ({children}) => {
     setCartList([])
   }
 
+  // const getCartItem = itemId => cartList.find(item => item.id === itemId)
+
   const incrementCartItemQuantity = itemId => {
     setCartList(
       cartList.map(item =>
