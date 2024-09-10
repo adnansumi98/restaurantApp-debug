@@ -44,27 +44,16 @@
   font-size: 14px;
 }
 
-.add-to-cart-button.mobile {
-  display: none;
-  border: none;
-  background: transparent;
-  padding: 10px;
-  margin-left: 10px;
-}
-
-.add-to-cart-button.mobile svg {
-  width: 30px;
-  height: 30px;
-  color: #338218;
-  border: solid 5px #838383;
-  border-radius: 25%;
-}
-
 @media (max-width: 768px) {
-  .add-to-cart-button.desktop {
-    display: none;
+  .add-to-cart-button {
+    font-size: 11px;
+    min-width: 100px;
   }
   .add-to-cart-button.mobile {
     display: inline !important;
+  }
+  .dish-quantity-contianer {
+    min-width: 50%;
+    max-width: 50%;
   }
 }

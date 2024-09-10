@@ -68,7 +68,7 @@
   margin-left: 10px;
 }
 .dish-image {
-  min-width: 20vw;
+  min-width: 10vw;
   height: 10vh;
   border-radius: 15px;
   padding: 10px;
@@ -93,11 +93,15 @@
 
 @media (min-width: 768px) {
   .dish-image {
-    width: 20vw;
+    width: 15vw;
     height: 30vh;
   }
   .dish-details {
     min-width: 60vw;
     max-width: 60vw;
+  }
+  .fooditems-container {
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
 }

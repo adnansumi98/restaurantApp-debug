@@ -50,9 +50,9 @@ const FoodItems = props => {
               <p className="dish-not-available">Not available</p>
             )}
             {dish.addonCat.length > 0 ? (
-              <button className="dish-addons" type="button">
+              <p className="dish-addons" type="button">
                 Customizations available
-              </button>
+              </p>
             ) : (
               ''
             )}

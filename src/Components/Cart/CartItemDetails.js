@@ -1,7 +1,10 @@
+import {useContext} from 'react'
+import {CartContext} from '../../Utility/CartContext'
 import Quantity from './Quantity'
 
 const CartItemDetails = props => {
   const {dishId, imageUrl, dishName, quantity, price, totalPrice} = props
+  const {removeCartItem} = useContext(CartContext)
 
   return (
     <div className="cart-item-container">
@@ -10,11 +13,28 @@ const CartItemDetails = props => {
         <p className="cart-item-heading">{dishName}</p>
         <Quantity quantity={quantity} id={dishId} />
       </div>
-      <p className="cart-item-measure">{quantity}</p>
-      <p className="cart-item-measure">{`SAR ${Number(price).toFixed(2)}`}</p>
-      <p className="cart-item-measure">{`SAR ${Number(totalPrice).toFixed(
-        2,
-      )}`}</p>
+      <div className="measure-container">
+        <p className="cart-item-label">Quantity</p>
+        <p className="cart-item-measure">{`${quantity}`}</p>
+      </div>
+      <div className="measure-container">
+        <p className="cart-item-label">Unit</p>
+        <p className="cart-item-measure">{`${Number(price).toFixed(2)}`}</p>
+      </div>
+      <div className="measure-container">
+        <p className="cart-item-label">Total</p>
+        <p className="cart-item-measure">{`${Number(totalPrice).toFixed(
+          2,
+        )}`}</p>
+      </div>
+      <button
+        className="remove-all-button remove-button"
+        style={{position: 'relative', bottom: '60px'}}
+        type="button"
+        onClick={() => removeCartItem(dishId)}
+      >
+        Remove
+      </button>
     </div>
   )
 }
