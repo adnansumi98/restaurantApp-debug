@@ -29,15 +29,9 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
         >
           -
         </button>
-        {quantity > 0 ? (
-          <p className="dish-quantity-button" value={quantity}>
-            {quantity}
-          </p>
-        ) : (
-          <p className="dish-quantity-button" value={quantity}>
-            0
-          </p>
-        )}
+        <p className="dish-quantity-button" value={quantity}>
+          {quantity}
+        </p>
         <button
           className="dish-quantity-button"
           type="button"
