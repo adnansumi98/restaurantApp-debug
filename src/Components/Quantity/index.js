@@ -48,7 +48,7 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
             onClick={handleAddToCartClick}
             aria-label={`Add ${item.dish_name} to cart`}
           >
-            Add to cart
+            ADD TO CART
           </button>
         </>
       )}
