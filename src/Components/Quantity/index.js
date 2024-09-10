@@ -2,25 +2,26 @@ import {useState, useCallback} from 'react'
 import './index.css'
 
 const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
-  const [quantity, setQuantity] = useState(0)
+  const [dishQuantity, setDishQuantity] = useState(0)
 
   const handleDecreaseQuantity = useCallback(() => {
-    setQuantity(prev => Math.max(0, prev - 1))
+    setDishQuantity(prev => Math.max(0, prev - 1))
     setTotalQuantity(prev => Math.max(0, prev - 1))
   }, [setTotalQuantity])
 
   const handleIncreaseQuantity = useCallback(() => {
-    setQuantity(prev => Math.min(20, prev + 1))
+    setDishQuantity(prev => Math.min(20, prev + 1))
     setTotalQuantity(prev => Math.min(20, prev + 1))
   }, [setTotalQuantity])
 
   const handleAddToCartClick = useCallback(() => {
-    handleAddToCart(item, quantity)
-    setQuantity(0) // Reset quantity after adding to cart
-  }, [item, quantity, handleAddToCart])
+    handleAddToCart(item, dishQuantity)
+    // Don't reset dishQuantity here, let it remain for the user to see
+  }, [item, dishQuantity, handleAddToCart])
 
   return (
     <div className="quantity-container">
+      <p className="dish-quantity-display">{dishQuantity}</p>
       <div className="dish-quantity-contianer">
         <button
           className="dish-quantity-button"
@@ -29,9 +30,7 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
         >
           -
         </button>
-        <p className="dish-quantity-button" value={quantity}>
-          {quantity}
-        </p>
+        <p className="dish-quantity-button">{dishQuantity}</p>
         <button
           className="dish-quantity-button"
           type="button"
@@ -40,7 +39,7 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
           +
         </button>
       </div>
-      {quantity > 0 && (
+      {dishQuantity > 0 && (
         <>
           <button
             type="button"
