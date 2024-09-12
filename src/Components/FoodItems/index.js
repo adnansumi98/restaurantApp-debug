@@ -40,7 +40,7 @@ const FoodItems = props => {
             <p className="dish-name">{dish.dish_name}</p>
             <p className="dish-price">{`SAR ${dish.dish_price}`}</p>
             <p className="dish-description">{dish.dish_description}</p>
-            {dish.dish_Availability ? (
+            {/* {dish.dish_Availability ? (
               <Quantity
                 item={dish}
                 setTotalQuantity={setTotalQuantity}
@@ -48,7 +48,12 @@ const FoodItems = props => {
               />
             ) : (
               <p className="dish-not-available">Not available</p>
-            )}
+            )} */}
+            <Quantity
+              item={dish}
+              setTotalQuantity={setTotalQuantity}
+              handleAddToCart={handleAddToCart}
+            />
             {dish.addonCat.length > 0 ? (
               <p className="dish-addons" type="button">
                 Customizations available

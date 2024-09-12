@@ -1,8 +1,13 @@
-import {useState, useCallback} from 'react'
+import {useState, useCallback, useEffect} from 'react'
 import './index.css'
 
 const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
   const [dishQuantity, setDishQuantity] = useState(0)
+
+  useEffect(() => {
+    console.log('Initial dishQuantity:', dishQuantity)
+    // eslint-disable-next-line
+  }, [])
 
   const handleDecreaseQuantity = useCallback(() => {
     setDishQuantity(prev => Math.max(0, prev - 1))
@@ -21,7 +26,6 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
 
   return (
     <div className="quantity-container">
-      <p className="dish-quantity-display">{dishQuantity}</p>
       <div className="dish-quantity-contianer">
         <button
           className="dish-quantity-button"
