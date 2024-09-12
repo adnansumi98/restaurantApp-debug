@@ -24,34 +24,28 @@ const Home = () => {
         method: 'GET',
       }
       try {
-        // test case 10: to delay the loading state for passing the required test cases
-        setTimeout(async () => {
-          const response = await fetch(url, options)
+        const response = await fetch(url, options)
+        if (response.ok) {
           const data = await response.json()
-          // console.log(data)
           setRestaurantObject(data[0])
-        }, 2000)
+          setRestaurantName(data[0].restaurant_name)
+          const categoriesObject = data[0].table_menu_list.map(each => ({
+            id: each.menu_category_id,
+            category: each.menu_category,
+          }))
+          setCategories(categoriesObject)
+          setIsLoading(false)
+        } else {
+          console.log('Something went wrong')
+          setIsLoading(false)
+        }
       } catch (error) {
         console.error(`Something went wrong: ${error}`)
+        setIsLoading(false)
       }
     }
     fetchResource()
-  }, [])
-
-  useEffect(() => {
-    // console.log(resaurantObject)
-    setRestaurantName(resaurantObject.restaurant_name)
-    // to handle error on initial rendering
-    if (resaurantObject.length !== 0) {
-      // return category with id and name
-      const categoriesObject = resaurantObject.table_menu_list.map(each => ({
-        id: each.menu_category_id,
-        category: each.menu_category,
-      }))
-      setCategories(categoriesObject)
-    }
-    setIsLoading(false)
-  }, [resaurantObject, setRestaurantName])
+  }, [setRestaurantName])
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -59,34 +53,18 @@ const Home = () => {
     }
   }, [categories])
 
-  const filterFoodItems = filterbyCategory => {
-    const foodItemsList = resaurantObject.table_menu_list
-      .filter(category => category.menu_category === filterbyCategory.category)
-      .map(menu => menu.category_dishes)
-    return foodItemsList
-  }
   useEffect(() => {
-    if (selectedCategory.length !== 0) {
-      const foodItemsList = filterFoodItems(selectedCategory)
-      setFoodItems(foodItemsList[0])
+    if (selectedCategory.length !== 0 && resaurantObject.table_menu_list) {
+      const foodItemsList =
+        resaurantObject.table_menu_list.find(
+          category => category.menu_category === selectedCategory.category,
+        )?.category_dishes || []
+      setFoodItems(foodItemsList)
     }
-    // eslint-disable-next-line
-  }, [selectedCategory])
+  }, [selectedCategory, resaurantObject])
 
   return (
     <div className="home-container">
-      {isloading ? (
-        <Loader
-          type="ThreeDots"
-          height="40"
-          width="40"
-          color="#4fa94d"
-          ariaLabel="oval-loading"
-          style={{paddingLeft: '20px'}}
-        />
-      ) : (
-        <Header />
-      )}
       {isloading ? (
         <Loader
           type="ThreeDots"
@@ -98,6 +76,7 @@ const Home = () => {
         />
       ) : (
         <>
+          <Header />
           <Categories
             categories={categories}
             selectedCategory={selectedCategory}
