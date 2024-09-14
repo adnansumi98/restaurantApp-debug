@@ -3,7 +3,8 @@ import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import Categories from '../Categories'
 import FoodItems from '../FoodItems'
-import {restaurantAppAPIUrl} from '../../Utility/Constants'
+import NotFound from '../NotFound'
+import {restaurantAppAPIUrl, apiConstants} from '../../Utility/Constants'
 import {NameContext} from '../../Utility/NameContext'
 import './index.css'
 
@@ -13,11 +14,11 @@ const Home = () => {
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState([])
   const [foodItems, setFoodItems] = useState([])
-  const [isloading, setIsLoading] = useState(true)
-
+  const [status, setStatus] = useState(apiConstants.initial)
   const {setRestaurantName} = useContext(NameContext)
 
   useEffect(() => {
+    setStatus(apiConstants.inProgress)
     const fetchResource = async () => {
       const url = restaurantAppAPIUrl
       const options = {
@@ -34,14 +35,14 @@ const Home = () => {
             category: each.menu_category,
           }))
           setCategories(categoriesObject)
-          setIsLoading(false)
+          setStatus(apiConstants.success)
         } else {
           console.log('Something went wrong')
-          setIsLoading(false)
+          setStatus(apiConstants.failure)
         }
       } catch (error) {
         console.error(`Something went wrong: ${error}`)
-        setIsLoading(false)
+        setStatus(apiConstants.failure)
       }
     }
     fetchResource()
@@ -63,33 +64,41 @@ const Home = () => {
     }
   }, [selectedCategory, resaurantObject])
 
-  return (
+  const LoadingView = () => (
+    <Loader
+      type="ThreeDots"
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="oval-loading"
+      className="home-spinner"
+    />
+  )
+
+  const HomeView = () => (
     <div className="home-container">
-      {isloading ? (
-        <Loader
-          type="ThreeDots"
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="oval-loading"
-          className="home-spinner"
-        />
-      ) : (
-        <>
-          <Header />
-          <Categories
-            categories={categories}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
-          <FoodItems
-            foodItemsList={foodItems}
-            totalQuantity={totalQuantity}
-            setTotalQuantity={setTotalQuanity}
-          />
-        </>
-      )}
+      <Header />
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <FoodItems
+        foodItemsList={foodItems}
+        totalQuantity={totalQuantity}
+        setTotalQuantity={setTotalQuanity}
+      />
     </div>
+  )
+
+  return (
+    <>
+      {status === apiConstants.success && <HomeView />}
+      {status === apiConstants.inProgress && <LoadingView />}
+      {(status === apiConstants.failure || status === apiConstants.initial) && (
+        <NotFound />
+      )}
+    </>
   )
 }
 

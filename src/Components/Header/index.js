@@ -4,6 +4,7 @@ import {AiOutlineShoppingCart, AiOutlineLogout} from 'react-icons/ai'
 import Cookies from 'js-cookie'
 import {CartContext} from '../../Utility/CartContext'
 import {NameContext} from '../../Utility/NameContext'
+
 import './index.css'
 
 const Header = () => {

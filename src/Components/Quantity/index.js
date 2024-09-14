@@ -23,6 +23,7 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
   }, [setTotalQuantity])
 
   const handleIncreaseQuantity = useCallback(() => {
+    // test case for increase in quantity failure
     setDishQuantity(prev => prev + 1)
     setTotalQuantity(prev => prev + 1)
   }, [setTotalQuantity])
