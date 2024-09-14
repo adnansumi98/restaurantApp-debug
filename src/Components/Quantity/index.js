@@ -23,8 +23,8 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
   }, [setTotalQuantity])
 
   const handleIncreaseQuantity = useCallback(() => {
-    setDishQuantity(prev => Math.min(20, prev + 1))
-    setTotalQuantity(prev => Math.min(20, prev + 1))
+    setDishQuantity(prev => prev + 1)
+    setTotalQuantity(prev => prev + 1)
   }, [setTotalQuantity])
 
   const handleAddToCartClick = useCallback(() => {
