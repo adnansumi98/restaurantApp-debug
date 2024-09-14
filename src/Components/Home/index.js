@@ -14,6 +14,7 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState([])
   const [foodItems, setFoodItems] = useState([])
   const [status, setStatus] = useState(apiConstants.initial)
+  const [isloading, setIsLoading] = useState(true)
   const {setRestaurantName} = useContext(NameContext)
 
   useEffect(() => {
@@ -35,13 +36,16 @@ const Home = () => {
           }))
           setCategories(categoriesObject)
           setStatus(apiConstants.success)
+          setIsLoading(false)
         } else {
           console.log('Something went wrong')
           setStatus(apiConstants.failure)
+          setIsLoading(false)
         }
       } catch (error) {
         console.error(`Something went wrong: ${error}`)
         setStatus(apiConstants.failure)
+        setIsLoading(false)
       }
     }
     fetchResource()
