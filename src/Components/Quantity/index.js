@@ -1,7 +1,7 @@
 import {useState, useCallback, useEffect} from 'react'
 import './index.css'
 
-const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
+const Quantity = ({item, handleAddToCart}) => {
   const [dishQuantity, setDishQuantity] = useState(0)
   const [dishAvailability, setDishAvailability] = useState(true)
 
@@ -17,16 +17,14 @@ const Quantity = ({item, setTotalQuantity, handleAddToCart}) => {
     // eslint-disable-next-line
   }, [dishAvailability])
 
-  const handleDecreaseQuantity = useCallback(() => {
+  const handleDecreaseQuantity = () => {
     setDishQuantity(prev => Math.max(0, prev - 1))
-    setTotalQuantity(prev => Math.max(0, prev - 1))
-  }, [setTotalQuantity])
+  }
 
-  const handleIncreaseQuantity = useCallback(() => {
+  const handleIncreaseQuantity = () => {
     // test case for increase in quantity failure
     setDishQuantity(prev => prev + 1)
-    setTotalQuantity(prev => prev + 1)
-  }, [setTotalQuantity])
+  }
 
   const handleAddToCartClick = useCallback(() => {
     handleAddToCart(item, dishQuantity)

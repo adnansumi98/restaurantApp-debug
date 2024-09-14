@@ -10,7 +10,6 @@ import './index.css'
 
 const Home = () => {
   const [resaurantObject, setRestaurantObject] = useState([])
-  const [totalQuantity, setTotalQuanity] = useState(0)
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState([])
   const [foodItems, setFoodItems] = useState([])
@@ -83,11 +82,7 @@ const Home = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <FoodItems
-        foodItemsList={foodItems}
-        totalQuantity={totalQuantity}
-        setTotalQuantity={setTotalQuanity}
-      />
+      <FoodItems foodItemsList={foodItems} />
     </div>
   )
 
