@@ -18,7 +18,7 @@ const Quantity = ({item, handleAddToCart}) => {
   }, [dishAvailability])
 
   const handleDecreaseQuantity = () => {
-    setDishQuantity(prev => Math.max(0, prev - 1))
+    setDishQuantity(prev => (prev > 0 ? prev - 1 : 0))
   }
 
   const handleIncreaseQuantity = () => {
