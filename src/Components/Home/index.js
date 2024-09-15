@@ -14,6 +14,7 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState([])
   const [foodItems, setFoodItems] = useState([])
   const [status, setStatus] = useState(apiConstants.initial)
+  // eslint-disable-next-line
   const [isloading, setIsLoading] = useState(true)
   const {setRestaurantName} = useContext(NameContext)
 

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {MdVisibility, MdVisibilityOff} from 'react-icons/md'
@@ -40,34 +40,47 @@ const Login = () => {
     }
   }
 
+  useEffect(() => {
+    const token = Cookies.get('jwt_token')
+    if (token !== undefined) {
+      history.push('/')
+    }
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <div className="login-contianer">
       <form className="login-from" onSubmit={authenticateUser}>
         <h1 className="login-heading">Restaurant App </h1>
-        <div className="input-contianer">
-          <p className="login-label">User Name</p>
-          <input
-            type="text"
-            className="login-input"
-            value={userName}
-            onChange={event => {
-              setUserName(event.target.value)
-              setErrorMessage('')
-            }}
-          />
-        </div>
-        <div className="input-contianer">
-          <p className="login-label">Password</p>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            className="login-input"
-            value={password}
-            onChange={event => {
-              setPassword(event.target.value)
-              setErrorMessage('')
-            }}
-          />
-        </div>
+
+        <label htmlFor="UserName" className="login-label">
+          USERNAME
+        </label>
+        <input
+          id="UserName"
+          type="text"
+          className="login-input"
+          value={userName}
+          onChange={event => {
+            setUserName(event.target.value)
+            setErrorMessage('')
+          }}
+        />
+
+        <label className="login-label" htmlFor="Password">
+          PASSWORD
+        </label>
+        <input
+          id="Password"
+          type={showPassword ? 'text' : 'password'}
+          className="login-input"
+          value={password}
+          onChange={event => {
+            setPassword(event.target.value)
+            setErrorMessage('')
+          }}
+        />
+
         {showPassword ? (
           <MdVisibility
             size={size}
