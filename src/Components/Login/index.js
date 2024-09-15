@@ -24,7 +24,7 @@ const Login = () => {
     const response = await fetch(logInAPIUrl, options)
     const data = await response.json()
     if (response.ok) {
-      Cookies.set('jwt_token', data.jwt_token)
+      Cookies.set('jwt_token', data.jwt_token, 30)
       setUserName('')
       setPassword('')
       history.push('/')
