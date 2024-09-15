@@ -21,22 +21,16 @@ const Login = () => {
     const credentials = {username: userName, password}
     const options = {method: 'POST', body: JSON.stringify(credentials)}
 
-    try {
-      const response = await fetch(logInAPIUrl, options)
-      const data = await response.json()
-      if (response.ok) {
-        Cookies.set('jwt_token', data.jwt_token)
-        setUserName('')
-        setPassword('')
-        history.push('/')
-      } else if (userName === '' || password === '') {
-        setErrorMessage('Enter a valid username or password')
-      } else {
-        setErrorMessage('Authentication Failure')
-      }
-    } catch (error) {
-      setErrorMessage('Something went wrong')
-      console.log(`LoginAPI: ${error}`)
+    const response = await fetch(logInAPIUrl, options)
+    const data = await response.json()
+    if (response.ok) {
+      Cookies.set('jwt_token', data.jwt_token)
+      setUserName('')
+      setPassword('')
+      history.push('/')
+    } else {
+      // console.log(data)
+      setErrorMessage(data.error_msg)
     }
   }
 
@@ -80,7 +74,6 @@ const Login = () => {
             setErrorMessage('')
           }}
         />
-
         {showPassword ? (
           <MdVisibility
             size={size}
@@ -102,8 +95,8 @@ const Login = () => {
             Login
           </button>
         </div>
-        {errorMessage && <p className="login-error-message">{errorMessage}</p>}
       </form>
+      {errorMessage && <p className="login-error-message">{errorMessage}</p>}
     </div>
   )
 }
