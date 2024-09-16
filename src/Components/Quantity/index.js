@@ -1,7 +1,7 @@
 import {useState, useCallback, useEffect} from 'react'
 import './index.css'
 
-const Quantity = ({item, handleAddToCart}) => {
+const Quantity = ({item, handleAddToCart, activeCategory}) => {
   const [dishQuantity, setDishQuantity] = useState(0)
   const [dishAvailability, setDishAvailability] = useState(true)
 
@@ -18,7 +18,9 @@ const Quantity = ({item, handleAddToCart}) => {
   }, [dishAvailability])
 
   const handleDecreaseQuantity = () => {
-    setDishQuantity(prev => (prev > 0 ? prev - 1 : 0))
+    if (dishQuantity > 0) {
+      setDishQuantity(prev => prev - 1)
+    }
   }
 
   const handleIncreaseQuantity = () => {
@@ -54,7 +56,7 @@ const Quantity = ({item, handleAddToCart}) => {
       ) : (
         <p className="dish-not-available">Not available</p>
       )}
-      {dishQuantity > 0 && (
+      {dishQuantity > 0 && activeCategory === 'Salads and Soup' && (
         <>
           <button
             type="button"

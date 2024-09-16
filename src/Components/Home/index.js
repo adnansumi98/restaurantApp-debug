@@ -87,7 +87,7 @@ const Home = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <FoodItems foodItemsList={foodItems} />
+      <FoodItems foodItemsList={foodItems} activeCategory={selectedCategory} />
     </div>
   )
 
