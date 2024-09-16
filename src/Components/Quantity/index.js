@@ -4,6 +4,7 @@ import './index.css'
 const Quantity = ({item, handleAddToCart, activeCategory}) => {
   const [dishQuantity, setDishQuantity] = useState(0)
   const [dishAvailability, setDishAvailability] = useState(true)
+  // console.log(activeCategory)
 
   // test case 10: checking initial render of dishQuantity should be 0
   useEffect(() => {
@@ -56,8 +57,15 @@ const Quantity = ({item, handleAddToCart, activeCategory}) => {
       ) : (
         <p className="dish-not-available">Not available</p>
       )}
-      {dishQuantity > 0 && activeCategory === 'Salads and Soup' && (
-        <>
+      {dishQuantity > 0 &&
+        [
+          'Salads and Soup',
+          'From the Barnyard',
+          'From the Hen House',
+          'Fresh From The Sea',
+          'Biryani',
+          'Fast Food',
+        ].includes(activeCategory.category) && (
           <button
             type="button"
             className="add-to-cart-button desktop"
@@ -66,8 +74,7 @@ const Quantity = ({item, handleAddToCart, activeCategory}) => {
           >
             ADD TO CART
           </button>
-        </>
-      )}
+        )}
     </div>
   )
 }

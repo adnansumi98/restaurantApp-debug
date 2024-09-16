@@ -4,7 +4,7 @@ import {CartContext} from '../../Utility/CartContext'
 import './index.css'
 
 const FoodItems = props => {
-  const {foodItemsList} = props
+  const {foodItemsList, activeCategory} = props
   // console.log(foodItemsList[0])
   const {addCartItem} = useContext(CartContext)
 
@@ -48,7 +48,11 @@ const FoodItems = props => {
             ) : (
               <p className="dish-not-available">Not available</p>
             )} */}
-            <Quantity item={dish} handleAddToCart={handleAddToCart} />
+            <Quantity
+              item={dish}
+              handleAddToCart={handleAddToCart}
+              activeCategory={activeCategory}
+            />
             {dish.addonCat.length > 0 ? (
               <p className="dish-addons" type="button">
                 Customizations available
