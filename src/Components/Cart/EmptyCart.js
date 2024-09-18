@@ -7,7 +7,7 @@ const EmptyCart = () => (
     <div className="empty-cart-image-container">
       <img
         className="empty-cart-image"
-        src="../../img/empty_cart.png"
+        src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-img.png"
         alt="Empty Cart"
       />
     </div>
